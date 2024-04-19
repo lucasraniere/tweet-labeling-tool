@@ -7,7 +7,7 @@ export default function TextDisplay(props: TextDisplayProps) {
         <div>
             <p>Tweet:</p>
             <textarea id='current-tweet' name='tweet-displayer'
-            rows={10} cols={60} readOnly value={props.tweet} />
+            rows={11} cols={70} readOnly value={props.tweet} />
         </div>
     )
 }
