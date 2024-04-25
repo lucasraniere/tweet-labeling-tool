@@ -11,14 +11,14 @@ export default function AnnotationMenu(props: any) {
             <Polarized />
             <TweetBias />
             <form>
-                <Characteristics>Linguagem Tóxica</Characteristics>
-                <Characteristics>Discurso de Ódio</Characteristics>
-                <Characteristics>Linguagem Emotiva</Characteristics>
-                <Characteristics>Conspiração</Characteristics>
-                <Characteristics>Desumanização</Characteristics>
-                <Characteristics>Imputação de crime</Characteristics>
-                <Characteristics>Linguagem divisiva</Characteristics>
-                <Characteristics>Outros</Characteristics>
+                <Characteristics name="linguagem_toxica">Linguagem Tóxica</Characteristics>
+                <Characteristics name="discurso_odio">Discurso de Ódio</Characteristics>
+                <Characteristics name="linguagem_emotiva">Linguagem Emotiva</Characteristics>
+                <Characteristics name="conspiracao">Conspiração</Characteristics>
+                <Characteristics name="desumanizacao">Desumanização</Characteristics>
+                <Characteristics name="imputacao_crime">Imputação de crime</Characteristics>
+                <Characteristics name="linguagem_divisiva">Linguagem divisiva</Characteristics>
+                <Characteristics name="outro">Outros</Characteristics>
             </form>
             <AnnotationButtons />
         </div>

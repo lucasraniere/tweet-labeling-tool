@@ -4,15 +4,6 @@ import TweetDisplayer from "./components/TweetDisplayer";
 
 import React, { useEffect, useState } from 'react';
 
-let tweetTexts = [
-  "This is tweet 0",
-  "This is tweet 1",
-  "This is tweet 2",
-  "This is tweet 3",
-  "This is tweet 4",
-  "This is tweet 5"
-];
-
 export default function Home() {
   const [currentId, setCurrentId] = useState<number>(0);
   const [tweetText, setTweetText] = useState<string>("");
