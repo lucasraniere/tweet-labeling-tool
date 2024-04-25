@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append('../')
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from lib import db_utils
 
@@ -32,6 +32,12 @@ def get_tweet(id_):
 def get_anotation(id_):
     return jsonify(db_utils.get_annotation(id_))
 
+@app.route('/annotate/<int:id_>', methods=['POST'])
+def annotate(id_):
+    # title = request.json['header']
+    annotation = request.json['annotation']
+
+    print(annotation)
 
 if __name__ == '__main__':
     app.run(debug=True)
