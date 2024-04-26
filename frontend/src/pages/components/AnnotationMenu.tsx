@@ -52,12 +52,10 @@ interface AnnotationMenuProps {
     otherTxtHandler: (tweet: string) => void;
 
     annotateButton: () => void;
+    annotateButtonNext: () => void;
 }
 
 export default function AnnotationMenu(props: AnnotationMenuProps) {
-    function showId() {
-        console.log("Wolololo")
-    }
     return (
         <div className="h-full w-full p-4 m-3 float-right align-middle space-y-8">
             <MetaData highlight={props.highlight}
@@ -137,7 +135,7 @@ export default function AnnotationMenu(props: AnnotationMenuProps) {
                 >Outros</Characteristics>
             </form>
             <AnnotationButtons clickFuncAnnot={props.annotateButton}
-            clickFuncAnnotNext={showId}
+            clickFuncAnnotNext={props.annotateButtonNext}
             />
         </div>
     )

@@ -52,12 +52,29 @@ export default function Home() {
     const id_ = annotation.id;
     const response = await fetch(`http://localhost:5000/annotate/${id_}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(annotation)
     }).then((response) => {
-      console.log(response);
+      console.log(response.body);
+    });
+  }
+
+  const annotateAndNext = async () => {
+    const annotation = getCurrentAnnotation();
+    const id_ = annotation.id;
+    const response = await fetch(`http://localhost:5000/annotate/${id_}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(annotation)
+    }).then((response) => {
+      console.log(response.body);
+    });
+    setCurrentId(id_ + 1);
+    getTweet(id_ + 1).then((tweet) => {
+      setTweetText(tweet);
+    });
+    getAnnotation(id_ + 1).then((annotation) => {
+      setAnnotation(annotation);
     });
   }
 
@@ -71,8 +88,7 @@ export default function Home() {
         setTweetText(tweet);
       });
       getAnnotation(parseInt(id)).then((annotation) => {
-        console.log(annotation);
-        setPolarized(annotation.polarized);
+        setAnnotation(annotation);
       });
     }
   }
@@ -293,6 +309,7 @@ export default function Home() {
         otherTxtHandler={setOtherTxt}
 
         annotateButton={annotate}
+        annotateButtonNext={annotateAndNext}
         />
       </div>
     </div>
