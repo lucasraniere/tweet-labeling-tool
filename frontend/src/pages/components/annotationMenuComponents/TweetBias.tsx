@@ -14,6 +14,8 @@ export default function TweetBias(props: TweetBiasProps) {
                 <input onChange={() => props.biasHandler(-0)} checked={props.tweetBias===0 ? true : false} type="radio" id="Centro" name="ideology" className="w-4 h-4" />
                 <label htmlFor="Direita" className="mx-3">Direita</label>
                 <input onChange={() => props.biasHandler(1)} checked={props.tweetBias===1 ? true : false} type="radio" id="Direita" name="ideology" className="w-4 h-4" />
+                <label htmlFor="Indefinido" className="mx-3">Indefinido</label>
+                <input onChange={() => props.biasHandler(4)} checked={props.tweetBias===4 ? true : false} type="radio" id="Indefinido" name="ideology" className="w-4 h-4" />
             </form>
         </div>
     )

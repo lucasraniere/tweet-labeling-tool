@@ -1,8 +1,10 @@
+'''This module contains the server backend for the annotation tool.'''
+
 import os
 import sys
-sys.path.append('../')
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+sys.path.append('../')
 from lib import db_utils
 
 
@@ -11,30 +13,35 @@ DATA_PATH = '../../data/'
 
 app = Flask(__name__)
 cors = CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
-# cors = CORS(app, origins='*')
 
 
 @app.route('/')
 def index():
+    '''Return a friendly 'Hello World' message.'''
     return 'Hello world!'
 
 
 @app.route('/next', methods=['GET'])
 def netx():
+    '''Get the next id for the tweet to be annotated.'''
     return jsonify(db_utils.get_next_id())
 
 
 @app.route('/get_tweet/<int:id_>', methods=['GET'])
 def get_tweet(id_):
+    '''Get the tweet for the given id.'''
     return jsonify(db_utils.get_tweet(id_))
 
 
 @app.route('/get_annotation/<int:id_>', methods=['GET'])
 def get_anotation(id_):
+    '''Get the annotation for the given tweet id.'''
     return jsonify(db_utils.get_annotation(id_))
+
 
 @app.route('/annotate/<int:id_>', methods=['POST'])
 def annotate(id_):
+    '''Annotate the tweet for a given id.'''
     annotation = request.json
     db_utils.annotate(id_, {
         "highlight": annotation["highlight"],
@@ -60,15 +67,20 @@ def annotate(id_):
     })
     return f"Annotation from tweet {id_} stored"
 
+
 @app.route('/export_parquet', methods=['GET'])
 def export_parquet():
+    '''Export the annotations to a parquet file.'''
     db_utils.generate_file()
     return "Parquet file exported"
 
+
 @app.route('/delete_annotations', methods=['GET'])
 def delete_annotations():
+    '''Delete all the annotations.'''
     db_utils.delete_annotation_data()
     return "Annotations deleted"
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -46,6 +46,8 @@ def get_next_id():
             if bd_id != idx:
                 next_id = idx
                 break
+            else:
+                next_id = idx + 1
         return {'id': next_id if next_id > 0 else 1}
 
 
