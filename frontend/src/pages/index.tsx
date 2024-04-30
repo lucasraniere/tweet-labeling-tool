@@ -25,6 +25,8 @@ export default function Home() {
   const [crimeImputationTxt, setCrimeImputationTxt] = useState<string>("");
   const [divisiveLanguage, setDivisiveLanguage] = useState<number>(0);
   const [divisiveLanguageTxt, setDivisiveLanguageTxt] = useState<string>("");
+  const [strongBias, setStrongBias] = useState<number>(0);
+  const [strongBiasTxt, setStrongBiasTxt] = useState<string>("");
   const [other, setOther] = useState<number>(0);
   const [otherTxt, setOtherTxt] = useState<string>("");
 
@@ -47,7 +49,7 @@ export default function Home() {
     return data;
   }
 
-  const annotate = async () => { 
+  const annotate = async () => {
     const annotation = getCurrentAnnotation();
     const id_ = annotation.id;
     const response = await fetch(`http://localhost:5000/annotate/${id_}`, {
@@ -180,6 +182,10 @@ export default function Home() {
     setDivisiveLanguage(divisiveLanguage === 0 ? 1 : 0);
   }
 
+  const checkStrongBiasHandler = () => {
+    setStrongBias(strongBias === 0 ? 1 : 0);
+  }
+
   const checkOtherHandler = () => {
     setOther(other === 0 ? 1 : 0);
   }
@@ -206,6 +212,8 @@ export default function Home() {
       'crime_imputation_txt': crimeImputationTxt,
       'divisive_language': divisiveLanguage,
       'divisive_language_txt': divisiveLanguageTxt,
+      'strong_bias': strongBias,
+      'strong_bias_txt': strongBiasTxt,
       'other': other,
       'other_txt': otherTxt
     };
@@ -230,6 +238,8 @@ export default function Home() {
     setCrimeImputationTxt(annotation.crime_imputation_txt);
     setDivisiveLanguage(annotation.divisive_language);
     setDivisiveLanguageTxt(annotation.divisive_language_txt);
+    setStrongBias(annotation.strong_bias);
+    setStrongBiasTxt(annotation.strong_bias_txt);
     setOther(annotation.other);
     setOtherTxt(annotation.other_txt);
   }
@@ -282,6 +292,8 @@ export default function Home() {
         crimeImputationTxt={crimeImputationTxt}
         divisiveLanguage={divisiveLanguage}
         divisiveLanguageTxt={divisiveLanguageTxt}
+        strongBias={strongBias}
+        strongBiasTxt={strongBiasTxt}
         other={other}
         otherTxt={otherTxt}
 
@@ -297,6 +309,7 @@ export default function Home() {
         dehumanizationCheckHandler={checkDehumanizationHandler}
         crimeImputationCheckHandler={checkCrimeImputationHandler}
         divisiveLanguageCheckHandler={checkDivisiveLanguageHandler}
+        strongBiasCheckHandler={checkStrongBiasHandler}
         otherCheckHandler={checkOtherHandler}
 
         toxicLanguageTxtHandler={setToxicLanguageTxt}
@@ -306,6 +319,7 @@ export default function Home() {
         dehumanizationTxtHandler={setDehumanizationTxt}
         crimeImputationTxtHandler={setCrimeImputationTxt}
         divisiveLanguageTxtHandler={setDivisiveLanguageTxt}
+        strongBiasTxtHandler={setStrongBiasTxt}
         otherTxtHandler={setOtherTxt}
 
         annotateButton={annotate}

@@ -100,6 +100,8 @@ def annotate(id_: int, annotation: dict):
                 crimeImputationText = "{annotation["crime_imputation_txt"]}",
                 divisiveLanguage = {annotation["divisive_language"]},
                 divisiveLanguageText = "{annotation["divisive_language_txt"]}",
+                strongBias = {annotation["strong_bias"]},
+                strongBiasText = "{annotation["strong_bias_txt"]}",
                 other = {annotation["other"]},
                 otherText = "{annotation["other_txt"]}"
                 WHERE id = {id_}
@@ -109,16 +111,16 @@ def annotate(id_: int, annotation: dict):
             cur.execute(f'''
                 INSERT INTO annotations VALUES ({id_},{annotation["highlight"]},
                 {annotation["not_good"]}, {annotation["polarized"]},
-                {annotation["tweet_bias"]}, {annotation["toxic_language"]},
-                "{annotation["toxic_language_txt"]}", {annotation["hate_speech"]},
-                "{annotation["hate_speech_txt"]}", {annotation["emotive_language"]},
-                "{annotation["emotive_language_txt"]}", {annotation["conspiracy"]},
-                "{annotation["conspiracy_txt"]}", {annotation["dehumanization"]},
-                "{annotation["dehumanization_txt"]}", {annotation["crime_imputation"]},
-                "{annotation["crime_imputation_txt"]}",
-                {annotation["divisive_language"]},
-                "{annotation["divisive_language_txt"]}", {annotation["other"]},
-                "{annotation["other_txt"]}")
+                {annotation["tweet_bias"]},
+                {annotation["toxic_language"]}, "{annotation["toxic_language_txt"]}",
+                {annotation["hate_speech"]}, "{annotation["hate_speech_txt"]}",
+                {annotation["emotive_language"]}, "{annotation["emotive_language_txt"]}",
+                {annotation["conspiracy"]}, "{annotation["conspiracy_txt"]}",
+                {annotation["dehumanization"]}, "{annotation["dehumanization_txt"]}",
+                {annotation["crime_imputation"]}, "{annotation["crime_imputation_txt"]}",
+                {annotation["divisive_language"]}, "{annotation["divisive_language_txt"]}",
+                {annotation["strong_bias"]},"{annotation["strong_bias_txt"]}",
+                {annotation["other"]}, "{annotation["other_txt"]}")
                 ''')
             con.commit()
 
@@ -158,7 +160,9 @@ def get_annotation(id_: int):
                 'divisive_language': res[0][17],
                 'divisive_language_txt': res[0][18],
                 'other': res[0][19],
-                'other_txt': res[0][20]
+                'other_txt': res[0][20],
+                'strong_bias': res[0][21],
+                'strong_bias_txt': res[0][22]
             }
         else:
             return {
@@ -181,6 +185,8 @@ def get_annotation(id_: int):
                 'crime_imputation_txt': "",
                 'divisive_language': 0,
                 'divisive_language_txt': "",
+                'strong_bias': 0,
+                'strong_bias_txt': "",
                 'other': 0,
                 'other_txt': ""
             }
@@ -232,8 +238,10 @@ def get_all_annotations():
             'crime_imputation_txt': row[16],
             'divisive_language': row[17],
             'divisive_language_txt': row[18],
-            'other': row[19],
-            'other_txt': row[20]
+            'strong_bias': row[19],
+            'strong_bias_txt': row[20],
+            'other': row[21],
+            'other_txt': row[22]
         } for row in res])
 
 

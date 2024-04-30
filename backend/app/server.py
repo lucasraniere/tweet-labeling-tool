@@ -62,6 +62,8 @@ def annotate(id_):
         "crime_imputation_txt": annotation["crime_imputation_txt"],
         "divisive_language": annotation["divisive_language"],
         "divisive_language_txt": annotation["divisive_language_txt"],
+        "strong_bias": annotation["strong_bias"],
+        "strong_bias_txt": annotation["strong_bias_txt"],
         "other": annotation["other"],
         "other_txt": annotation["other_txt"]
     })

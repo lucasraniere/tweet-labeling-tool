@@ -17,6 +17,7 @@ interface AnnotationMenuProps {
     dehumanization: number;
     crimeImputation: number;
     divisiveLanguage: number;
+    strongBias: number;
     other: number;
 
     toxicLanguageTxt: string;
@@ -26,6 +27,7 @@ interface AnnotationMenuProps {
     dehumanizationTxt: string;
     crimeImputationTxt: string;
     divisiveLanguageTxt: string;
+    strongBiasTxt: string;
     otherTxt: string;
 
     highlightHandler: () => void;
@@ -40,6 +42,7 @@ interface AnnotationMenuProps {
     dehumanizationCheckHandler: () => void;
     crimeImputationCheckHandler: () => void;
     divisiveLanguageCheckHandler: () => void;
+    strongBiasCheckHandler: () => void;
     otherCheckHandler: () => void;
 
     toxicLanguageTxtHandler: (tweet: string) => void;
@@ -49,6 +52,7 @@ interface AnnotationMenuProps {
     dehumanizationTxtHandler: (tweet: string) => void;
     crimeImputationTxtHandler: (tweet: string) => void;
     divisiveLanguageTxtHandler: (tweet: string) => void;
+    strongBiasTxtHandler: (tweet: string) => void;
     otherTxtHandler: (tweet: string) => void;
 
     annotateButton: () => void;
@@ -125,6 +129,14 @@ export default function AnnotationMenu(props: AnnotationMenuProps) {
                 checkHandler={props.divisiveLanguageCheckHandler}
                 textHandler={props.divisiveLanguageTxtHandler}
                 >Linguagem divisiva</Characteristics>
+
+                <Characteristics name="strong_bias"
+                polarized={props.polarized}
+                checked={props.strongBias}
+                textValue={props.strongBiasTxt}
+                checkHandler={props.strongBiasCheckHandler}
+                textHandler={props.strongBiasTxtHandler}
+                >Forte viés</Characteristics>
 
                 <Characteristics name="outro"
                 polarized={props.polarized}
