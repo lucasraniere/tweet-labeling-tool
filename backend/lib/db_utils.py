@@ -78,51 +78,21 @@ def annotate(id_: int, annotation: dict):
     '''
     with sqlite3.connect(DB_PATH) as con:
         cur = con.cursor()
-        res = cur.execute(f'SELECT * FROM annotations WHERE id = {id_}').fetchall()
-        if res:
-            cur.execute(f'''
-                UPDATE annotations
-                SET highlight = {annotation["highlight"]},
-                notGood = {annotation["not_good"]},
-                polarizedClassification = {annotation["polarized"]},
-                tweetBias = {annotation["tweet_bias"]},
-                toxicLanguage = {annotation["toxic_language"]},
-                toxicLanguageText = "{annotation["toxic_language_txt"]}",
-                hateSpeech = {annotation["hate_speech"]},
-                hateSpeechText = "{annotation["hate_speech_txt"]}",
-                emotiveLanguage = {annotation["emotive_language"]},
-                emotiveLanguageText = "{annotation["emotive_language_txt"]}",
-                conspiracyTheory = {annotation["conspiracy"]},
-                conspiracyTheoryText = "{annotation["conspiracy_txt"]}",
-                dehumanization = {annotation["dehumanization"]},
-                dehumanizationText = "{annotation["dehumanization_txt"]}",
-                crimeImputation = {annotation["crime_imputation"]},
-                crimeImputationText = "{annotation["crime_imputation_txt"]}",
-                divisiveLanguage = {annotation["divisive_language"]},
-                divisiveLanguageText = "{annotation["divisive_language_txt"]}",
-                strongBias = {annotation["strong_bias"]},
-                strongBiasText = "{annotation["strong_bias_txt"]}",
-                other = {annotation["other"]},
-                otherText = "{annotation["other_txt"]}"
-                WHERE id = {id_}
+        cur.execute(f'''
+            INSERT OR REPLACE INTO annotations VALUES ({id_},{annotation["highlight"]},
+            {annotation["not_good"]}, {annotation["polarized"]},
+            {annotation["tweet_bias"]},
+            {annotation["toxic_language"]}, "{annotation["toxic_language_txt"]}",
+            {annotation["hate_speech"]}, "{annotation["hate_speech_txt"]}",
+            {annotation["emotive_language"]}, "{annotation["emotive_language_txt"]}",
+            {annotation["conspiracy"]}, "{annotation["conspiracy_txt"]}",
+            {annotation["dehumanization"]}, "{annotation["dehumanization_txt"]}",
+            {annotation["crime_imputation"]}, "{annotation["crime_imputation_txt"]}",
+            {annotation["divisive_language"]}, "{annotation["divisive_language_txt"]}",
+            {annotation["other"]}, "{annotation["other_txt"].replace('"', '\"')}",
+            {annotation["strong_bias"]},"{annotation["strong_bias_txt"]}")
             ''')
-            con.commit()
-        else:
-            cur.execute(f'''
-                INSERT INTO annotations VALUES ({id_},{annotation["highlight"]},
-                {annotation["not_good"]}, {annotation["polarized"]},
-                {annotation["tweet_bias"]},
-                {annotation["toxic_language"]}, "{annotation["toxic_language_txt"]}",
-                {annotation["hate_speech"]}, "{annotation["hate_speech_txt"]}",
-                {annotation["emotive_language"]}, "{annotation["emotive_language_txt"]}",
-                {annotation["conspiracy"]}, "{annotation["conspiracy_txt"]}",
-                {annotation["dehumanization"]}, "{annotation["dehumanization_txt"]}",
-                {annotation["crime_imputation"]}, "{annotation["crime_imputation_txt"]}",
-                {annotation["divisive_language"]}, "{annotation["divisive_language_txt"]}",
-                {annotation["strong_bias"]},"{annotation["strong_bias_txt"]}",
-                {annotation["other"]}, "{annotation["other_txt"]}")
-                ''')
-            con.commit()
+        con.commit()
 
 
 def get_annotation(id_: int):
