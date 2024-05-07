@@ -199,23 +199,23 @@ export default function Home() {
       'polarized': polarized,
       'tweet_bias': tweetBias,
       'toxic_language': toxicLanguage,
-      'toxic_language_txt': toxicLanguageTxt,
+      'toxic_language_txt': toxicLanguageTxt.replaceAll('"', '""'),
       'hate_speech': hateSpeech,
-      'hate_speech_txt': hateSpeechTxt,
+      'hate_speech_txt': hateSpeechTxt.replaceAll('"', '""'),
       'emotive_language': emotiveLanguage,
-      'emotive_language_txt': emotiveLanguageTxt,
+      'emotive_language_txt': emotiveLanguageTxt.replaceAll('"', '""'),
       'conspiracy': conspiracy,
-      'conspiracy_txt': conspiracyTxt,
+      'conspiracy_txt': conspiracyTxt.replaceAll('"', '""'),
       'dehumanization': dehumanization,
-      'dehumanization_txt': dehumanizationTxt,
+      'dehumanization_txt': dehumanizationTxt.replaceAll('"', '""'),
       'crime_imputation': crimeImputation,
-      'crime_imputation_txt': crimeImputationTxt,
+      'crime_imputation_txt': crimeImputationTxt.replaceAll('"', '""'),
       'divisive_language': divisiveLanguage,
-      'divisive_language_txt': divisiveLanguageTxt,
+      'divisive_language_txt': divisiveLanguageTxt.replaceAll('"', '""'),
       'strong_bias': strongBias,
-      'strong_bias_txt': strongBiasTxt,
+      'strong_bias_txt': strongBiasTxt.replaceAll('"', '""'),
       'other': other,
-      'other_txt': otherTxt
+      'other_txt': otherTxt.replaceAll('"', '""')
     };
   }
 

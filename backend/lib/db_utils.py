@@ -89,7 +89,7 @@ def annotate(id_: int, annotation: dict):
             {annotation["dehumanization"]}, "{annotation["dehumanization_txt"]}",
             {annotation["crime_imputation"]}, "{annotation["crime_imputation_txt"]}",
             {annotation["divisive_language"]}, "{annotation["divisive_language_txt"]}",
-            {annotation["other"]}, "{annotation["other_txt"].replace('"', '\"')}",
+            {annotation["other"]}, "{annotation["other_txt"]}",
             {annotation["strong_bias"]},"{annotation["strong_bias_txt"]}")
             ''')
         con.commit()
