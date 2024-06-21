@@ -208,10 +208,10 @@ def get_all_annotations():
             'crime_imputation_txt': row[16],
             'divisive_language': row[17],
             'divisive_language_txt': row[18],
-            'strong_bias': row[19],
-            'strong_bias_txt': row[20],
-            'other': row[21],
-            'other_txt': row[22]
+            'strong_bias': row[21],
+            'strong_bias_txt': row[22],
+            'other': row[19],
+            'other_txt': row[20]
         } for row in res])
 
 
