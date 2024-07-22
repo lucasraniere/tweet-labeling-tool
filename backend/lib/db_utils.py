@@ -232,6 +232,22 @@ def generate_file():
     db_df.to_parquet(DATA_PATH + 'annotated_tweets.parquet', index=False)
 
 
+def get_tweet_startswith(startswith: str):
+    '''
+    Gets the tweet that starts with the given string
+
+    Parameters:
+        startswith (str): The string that the tweet should start with
+
+    Returns:
+        A dictionary with the tweet that starts with the given string
+    '''
+    with sqlite3.connect(DB_PATH) as con:
+        cur = con.cursor()
+        res = cur.execute(f'SELECT * FROM tweets WHERE tweet LIKE "{startswith}%"').fetchone()
+        return res if res else {"error": "Tweet not found"}
+
+
 def delete_annotation_data():
     '''
     Delete the annotations from the database

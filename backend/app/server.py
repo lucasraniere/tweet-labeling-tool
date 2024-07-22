@@ -84,5 +84,11 @@ def delete_annotations():
     return "Annotations deleted"
 
 
+@app.route('/get_startswith/<string:startswith>', methods=['GET'])
+def get_startswith(startswith):
+    '''Get the tweet ids that start with the given string.'''
+    return jsonify(db_utils.get_tweet_startswith(startswith))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
